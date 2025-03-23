@@ -14,7 +14,7 @@ class FellowshipSearchAgent:
 
     def __init__(self, use_local_llm=False):
         options = Options()
-        # options.add_argument("--headless")
+        options.add_argument("--headless")
         service = Service("/opt/homebrew/bin/chromedriver")
         self.driver = webdriver.Chrome(service=service, options=options)
 

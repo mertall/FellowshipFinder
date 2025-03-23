@@ -30,6 +30,7 @@ __pycache__/
 *.log
 *.tmp
 *.bak
+*.png
 
 # Environment variables
 .env
