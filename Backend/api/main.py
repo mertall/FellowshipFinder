@@ -1,39 +1,31 @@
-from fastapi import FastAPI, UploadFile, Form
-from typing import List
-import shutil
-import os
+from fastapi import FastAPI
+from fastapi.middleware.cors import CORSMiddleware
 import csv
-from backend.agent.agent import FellowshipAgent
-from backend.storage.storage import save_results, get_results
+import os
 
 app = FastAPI()
 
-UPLOAD_DIR = "uploads"
-os.makedirs(UPLOAD_DIR, exist_ok=True)
+# ✅ Allow requests from frontend (React)
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["http://localhost:3000"],  # Update with frontend URL
+    allow_credentials=True,
+    allow_methods=["*"],  # Allow all HTTP methods (GET, POST, etc.)
+    allow_headers=["*"],  # Allow all headers
+)
 
-@app.post("/search")
-async def search_fellowships(
-    university: str = Form(...), 
-    field_of_study: str = Form(...), 
-    resume: UploadFile = None
-):
-    # Save resume (optional)
-    resume_path = None
-    if resume:
-        resume_path = f"{UPLOAD_DIR}/{resume.filename}"
-        with open(resume_path, "wb") as buffer:
-            shutil.copyfileobj(resume.file, buffer)
+CSV_FILE = "Backend/common/universities.csv"
 
-    # Call the agent
-    agent = FellowshipAgent()
-    results = agent.find_fellowships(university, field_of_study)
+@app.get("/universities")
+async def get_universities():
+    """Fetches the list of universities and their fellowship links."""
+    if not os.path.exists(CSV_FILE):
+        return {"error": "University list not found."}
 
-    # Save results
-    csv_filename = save_results(university, results)
-    
-    return {"message": "Fellowships found", "csv_file": csv_filename}
+    universities = []
+    with open(CSV_FILE, mode="r", newline="") as file:
+        reader = csv.DictReader(file)
+        for row in reader:
+            universities.append({"name": row["University"], "link": row["Link"]})
 
-@app.get("/results/{university}")
-async def get_fellowship_results(university: str):
-    return get_results(university)
-
+    return {"universities": universities}
