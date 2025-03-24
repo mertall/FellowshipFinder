@@ -1,0 +1,39 @@
+John Doe
+Email: johndoe@example.com | Phone: (123) 456-7890 | LinkedIn: linkedin.com/in/johndoe
+
+EDUCATION
+---------
+University of Chicago, Chicago, IL
+Ph.D. in Computer Science, Expected 2026
+- Focus: Machine Learning, Natural Language Processing
+- GPA: 3.9/4.0
+
+University of Illinois Urbana-Champaign, Urbana, IL
+B.S. in Mathematics and Computer Science, 2021
+- Minor in Physics
+
+RESEARCH EXPERIENCE
+-------------------
+Graduate Research Assistant, University of Chicago
+- Designed a transformer-based model for low-resource language translation.
+- Collaborated with a cross-disciplinary team in the Physical Sciences Division.
+- Published in ACL 2023.
+
+Intern, Argonne National Laboratory
+- Developed predictive analytics tools using large-scale environmental data.
+- Project funded under Department of Energy research initiative.
+
+TEACHING EXPERIENCE
+--------------------
+Teaching Assistant, University of Chicago
+- Machine Learning (Graduate Level)
+- Introduction to Algorithms (Undergraduate Level)
+
+AWARDS & FELLOWSHIPS
+---------------------
+NSF Graduate Research Fellowship (2022)
+DOE Computational Science Fellowship (2023)
+
+SKILLS
+------
+Python, PyTorch, TensorFlow, SQL, LaTeX, AWS
