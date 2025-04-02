@@ -7,7 +7,7 @@ import os
 
 from fastapi.responses import FileResponse
 
-from Backend.agent.main import FellowshipSearchAgent
+from Backend.agent.agent import FellowshipSearchAgent
 
 app = FastAPI()
 
