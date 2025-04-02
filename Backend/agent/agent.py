@@ -53,9 +53,11 @@ class FellowshipSearchAgent:
                 print(f"Step '{step_label}' failed: {e}")
                 break
 
-    def assess_search_options(self, link="https://grad.uchicago.edu/fellowships/fellowships-database/"):
+    def assess_search_options(self, url):
+        if url is None:
+            url ="https://grad.uchicago.edu/fellowships/fellowships-database/"
         print("Assessing page structure...")
-        self.agent.get(link)
+        self.agent.get(url)
         time.sleep(3)
 
         captured_output = None
@@ -103,12 +105,9 @@ class FellowshipSearchAgent:
             print(f"⚠️ Could not parse features: {e}\n")
             return {}
 
-    def run_workflow(self):
-        self.agent.get("https://grad.uchicago.edu/fellowships/fellowships-database/")
-        time.sleep(2)
-        print(f"🔢 Initial number of results: {count_search_results(self.driver)}")
+    def run_workflow(self, url=None):
 
-        assessment = self.assess_search_options()
+        assessment = self.assess_search_options(url)
         controls = parse_filter_controls(assessment)
         print("✅ Detected Controls:", controls)
 
@@ -132,7 +131,6 @@ class FellowshipSearchAgent:
                 self.safe_agent_run(step, step_label=f"Dynamic Step {i+1}")
 
         time.sleep(3)
-        print(f"🔢 Final number of results: {count_search_results(self.driver)}")
         extract_table_to_csv(self.driver)
 
     def close(self):
