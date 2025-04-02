@@ -1,7 +1,8 @@
 from PIL import Image
 import pytest
 import os
-from main import FellowshipSearchAgent
+from agent import FellowshipSearchAgent
+from utils import extract_json_from_string, extract_table_to_csv
 
 os.environ["TELEMETRY_VAR"] = "NONE"
 
