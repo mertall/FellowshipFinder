@@ -12,8 +12,8 @@ from langchain_openai import ChatOpenAI
 from langchain_core.runnables import RunnableLambda
 from langchain_core.output_parsers import StrOutputParser
 
-from prompts import get_filter_prompt, get_action_plan_prompt
-from utils import extract_json_from_string, parse_filter_controls, count_search_results, extract_table_to_csv
+from Backend.agent.prompts import get_filter_prompt, get_action_plan_prompt
+from Backend.agent.utils import extract_json_from_string, parse_filter_controls, count_search_results, extract_table_to_csv
 
 class FellowshipSearchAgent:
     def __init__(self, use_local_llm=False):
